@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这边的包路径和sql语句需要根据自身的表的写-->
+<mapper namespace="com.example.auto_warehouse.mapper.OrderMapper">
+    <select id = "getId" resultType="com.example.auto_warehouse.bean.shippingitem">
+        select id from shippingsystem.shippingitem
+    </select>
+    <insert id = "createItem" parameterType="com.example.auto_warehouse.bean.shippingitem">
+        insert into shippingsystem.shippingitem (id,name,quantity,weight)
+        values(#{id},#{name},#{quantity},#{weight})
+    </insert>
+    <insert id = "createOrder" parameterType="com.example.auto_warehouse.bean.order">
+        insert into shippingsystem.order (id,consignorId,destinationAddress,departAddress,status,
+        fromDate,cost,currentLocation,reciverName,reciverPhone)
+        values(#{id},#{consignorId},#{destinationAddress},#{departAddress},#{status},
+                #{fromdate},#{cost},#{currentLocation},#{reciverName},#{reciverPhone})
+    </insert>
+    <select id = "ordersearch" resultType="com.example.auto_warehouse.bean.orderPlus">
+        select * from shippingsystem.order left join shippingsystem.shippingitem
+        on shippingsystem.order.id = shippingsystem.shippingitem.id
+        where shippingsystem.order.consignorId = #{consignorId}
+    </select>
+    <select id = "transportsearch" resultType="com.example.auto_warehouse.bean.transportion">
+        select * from shippingsystem.transportation where id = #{id}
+    </select>
+
+</mapper>

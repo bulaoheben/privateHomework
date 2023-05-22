@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这边的包路径和sql语句需要根据自身的表的写-->
+<mapper namespace="com.example.auto_warehouse.mapper.UserMapper">
+    <select id = "findByname" resultType="com.example.auto_warehouse.bean.User">
+        select * from shippingsystem.account where username = #{username}
+    </select>
+    <select id = "getId" resultType="com.example.auto_warehouse.bean.User">
+        select id from shippingsystem.account
+    </select>
+
+<!--    <select id = "findById" resultType="com.example.auto_warehouse.bean.User">-->
+<!--        select * from auto_warehouseDB.user where uid = #{uid}-->
+<!--    </select>-->
+<!--    <select id = "allUser" resultType="com.example.auto_warehouse.bean.User">-->
+<!--        select * from auto_warehouseDB.user-->
+<!--    </select>-->
+    <insert id = "createAccount" parameterType="com.example.auto_warehouse.bean.User">
+        insert into shippingsystem.account (id,username,password,phone,email)
+        values(#{id},#{username},#{password},#{phone},#{email})
+    </insert>
+
+<!--    <update id = "modifyName" parameterType="com.example.auto_warehouse.bean.User">
+        update auto_warehouseDB.user set name = #{name} where uid = #{uid};
+    </update>
+    <update id="modifyPassword"  parameterType="com.example.auto_warehouse.bean.User">
+        update auto_warehouseDB.user set password = #{password} where uid = #{uid};
+    </update>-->
+</mapper>
