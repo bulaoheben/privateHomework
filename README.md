@@ -14,3 +14,5 @@
 微服务版本（auto_warehouse（microservice）.rar）
 
 非微服务版本（auto_warehouse）
+
+5.微服务前端（github仓库链接）：https://github.com/bulaoheben/microservicePre
